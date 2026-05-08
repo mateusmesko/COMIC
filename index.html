@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" />
+  <title>COMIC</title>
+</head>
+
+<body>
+  <div class="flipbook">
+    
+    <div><img src="images/com_pw_.jpg" alt="" /></div>
+    <div  class="second"></div>
+    <div class="backPage">
+      <small>SPIDER MAN SUPERIOR</small>
+    </div>
+    <div><img src="images/com_pw_ (1).jpg" alt="" /></div>
+  <div><img src="images/com_pw_ (2).jpg" alt="" /></div>
+  <div><img src="images/com_pw_ (3).jpg" alt="" /></div>
+  <div><img src="images/com_pw_ (4).jpg" alt="" /></div>
+  <div><img src="images/com_pw_ (5).jpg" alt="" /></div>
+  <div><img src="images/com_pw_ (6).jpg" alt="" /></div>
+  <div><img src="images/com_pw_ (7).jpg" alt="" /></div>
+  <div><img src="images/com_pw_ (8).jpg" alt="" /></div>
+  <div><img src="images/com_pw_ (9).jpg" alt="" /></div>
+  <div><img src="images/com_pw_ (10).jpg" alt="" /></div>
+  <div><img src="images/com_pw_ (11).jpg" alt="" /></div>
+  <div><img src="images/com_pw_ (12).jpg" alt="" /></div>
+  <div><img src="images/com_pw_ (13).jpg" alt="" /></div>
+  <div><img src="images/com_pw_ (14).jpg" alt="" /></div>
+  <div><img src="images/com_pw_ (15).jpg" alt="" /></div>
+  <div><img src="images/com_pw_ (16).jpg" alt="" /></div>
+  <div><img src="images/com_pw_ (17).jpg" alt="" /></div>
+  <div><img src="images/com_pw_ (18).jpg" alt="" /></div>
+  <div><img src="images/com_pw_ (19).jpg" alt="" /></div>
+  <div><img src="images/com_pw_ (20).jpg" alt="" /></div>
+  <div><img src="images/com_pw_ (21).jpg" alt="" /></div>
+  <div><img src="images/com_pw_ (22).jpg" alt="" /></div>
+  <div><img src="images/com_pw_ (23).jpg" alt="" /></div>
+  <div><img src="images/com_pw_ (24).jpg" alt="" /></div>
+  <div><img src="images/com_pw_ (25).jpg" alt="" /></div>
+  <div><img src="images/com_pw_ (26).jpg" alt="" /></div>
+    
+     
+    <div class="hard"></div>
+    <div class="hard">Thank You For Tested</div>
+  </div>
+
+  <script src="jquery.js"></script>
+  <script src="turn.js"></script>
+  <script>
+    $(".flipbook").turn();
+  </script>
+  <script>
+  const flipbook = document.querySelector(".flipbook");
+
+  let scale = 1;
+
+  // POSIÇÃO DO MOUSE
+  let mouseX = 0;
+  let mouseY = 0;
+
+  document.addEventListener("mousemove", (e) => {
+
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+
+  });
+
+  // ZOOM NO SCROLL
+  document.addEventListener("wheel", (e) => {
+
+    e.preventDefault();
+
+    // DIREÇÃO DO SCROLL
+    const delta =
+      e.deltaY * -0.001;
+
+    // ALTERA SCALE
+    scale += delta;
+
+    // LIMITES
+    scale = Math.min(Math.max(1, scale), 5);
+
+    // POSIÇÃO RELATIVA
+    const rect =
+      flipbook.getBoundingClientRect();
+
+    const x =
+      ((mouseX - rect.left) / rect.width) * 100;
+
+    const y =
+      ((mouseY - rect.top) / rect.height) * 100;
+
+    // DEFINE ORIGEM DO ZOOM
+    flipbook.style.transformOrigin =
+      `${x}% ${y}%`;
+
+    // APLICA ZOOM
+    flipbook.style.transform =
+      `scale(${scale})`;
+
+  }, { passive:false });
+</script>
+</body>
+
+</html>
