@@ -1,140 +1,358 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>PDF COMIC MODE</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-
-
+  <title>Mateus Mesko | Frontend Engineer</title>
+  <link
+          rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+  />
   <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
 
-<div class="controls">
-  <input type="file" id="pdfInput" accept=".pdf"/>
-  <button id="convertBtn">Carregar PDF</button>
-</div>
+<div class="glow"></div>
 
-<div class="flipbook"></div>
-<script src="jquery.js"></script>
-<script src="turn.js"></script>
-<script type="module">
+<nav>
 
-  import * as pdfjsLib from "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.3.136/pdf.min.mjs";
+  <div class="logo">
 
-  pdfjsLib.GlobalWorkerOptions.workerSrc =
-          "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.3.136/pdf.worker.min.mjs";
+    <span class="logo-dot"></span>
 
-  const input = document.getElementById("pdfInput");
-  const btn = document.getElementById("convertBtn");
-  const flipbook = $(".flipbook");
+    <div class="logo-text">
 
-  btn.addEventListener("click", async () => {
+      Mateus Mesko
 
-    const file = input.files[0];
-    if (!file) return alert("Selecione um PDF");
+      <small>
+        Full Stack • Frontend • Cybersecurity
+      </small>
 
-    flipbook.html("");
+    </div>
 
-    const pdf = await pdfjsLib.getDocument({
-      data: await file.arrayBuffer()
-    }).promise;
+  </div>
 
-    for (let i = 1; i <= pdf.numPages; i++) {
+  <ul>
 
-      const page = await pdf.getPage(i);
+    <li><a href="#about">Sobre</a></li>
+    <li><a href="#stack">Stack</a></li>
+    <li><a href="#projects">Projetos</a></li>
+    <li><a href="#experience">Experiência</a></li>
 
-      const viewport = page.getViewport({ scale: 2 });
+  </ul>
+  <div class="theme-toggle" id="themeToggle">
 
-      const canvas = document.createElement("canvas");
-      const ctx = canvas.getContext("2d");
+    <i class="fa-solid fa-moon"></i>
 
-      canvas.width = viewport.width;
-      canvas.height = viewport.height;
+  </div>
+</nav>
 
-      await page.render({
-        canvasContext: ctx,
-        viewport
-      }).promise;
+<section class="hero">
 
-      const img = document.createElement("img");
-      img.src = canvas.toDataURL("image/png");
+  <div class="hero-content fade">
 
-      const div = document.createElement("div");
-      div.appendChild(img);
+    <div class="badge">
+      Full Stack Engineer • Frontend • Backend • Cybersecurity
+    </div>
 
-      flipbook.append(div);
-    }
+    <h1>
+      Building
+      <span class="gradient">
+modern web experiences
+</span>
+      for scalable products.
+    </h1>
 
-    // 🔥 comportamento HQ igual seu COMIC
-    flipbook.turn({
-      autoCenter: true,
-      width: 1300,
-      height: 700
-    });
+    <p>
+
+      Desenvolvedor Full Stack com experiência em frontend moderno, backend, arquitetura de software e segurança da informação.
+
+      Atuação com React, Vue, Svelte, Node.js, Java, APIs REST, Docker e desenvolvimento de aplicações escaláveis, seguras e orientadas à experiência do usuário.
+
+    </p>
+
+    <div class="buttons">
+
+      <a class="btn primary"
+         href="https://github.com/mateusmesko"
+         target="_blank">
+
+        <i class="fa-brands fa-github"></i>
+        Explore my GitHub
+
+      </a>
+
+      <a class="btn secondary"
+         href="https://www.linkedin.com/in/mateus-mesko"
+         target="_blank">
+
+        <i class="fa-brands fa-linkedin"></i>
+        Connect on LinkedIn
+
+      </a>
+
+    </div>
+
+  </div>
+
+</section>
+
+<section id="about">
+
+  <h2 class="section-title fade">
+    Sobre
+  </h2>
+
+  <div class="grid">
+
+    <div class="card fade">
+
+      <h3>
+        <i class="fa-solid fa-code"></i>
+        Frontend Engineering
+      </h3>
+
+      <p>
+        Construção de interfaces modernas, responsivas e componentizadas utilizando React, Vue, JavaScript e ecossistemas web modernos com foco em UX, performance e maintainability.
+      </p>
+
+    </div>
+
+    <div class="card fade">
+
+      <h3>
+        <i class="fa-solid fa-server"></i>
+        Backend & APIs
+      </h3>
+
+      <p>
+        Desenvolvimento backend utilizando Node.js, Java, microsserviços, autenticação, REST APIs e integrações escaláveis entre aplicações e plataformas.
+      </p>
+
+    </div>
+
+    <div class="card fade">
+
+      <h3>
+        <i class="fa-solid fa-shield-halved"></i>
+        Cybersecurity
+      </h3>
+
+      <p>
+        Experiência com segurança de aplicações, arquitetura segura, autenticação, práticas AppSec, análise de riscos e desenvolvimento orientado à segurança.
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
+
+<section id="stack">
+
+  <h2 class="section-title fade">
+    Stack
+  </h2>
+
+  <div class="grid">
+
+    <div class="card fade">
+
+      <h3>
+        <i class="fa-solid fa-laptop-code"></i>
+        Frontend
+      </h3>
+
+      <div class="stack-item">React</div>
+      <div class="stack-item">Vue.js</div>
+      <div class="stack-item">Svelte / SvelteKit</div>
+      <div class="stack-item">JavaScript / TypeScript</div>
+      <div class="stack-item">HTML / CSS</div>
+
+    </div>
+
+    <div class="card fade">
+
+      <h3>
+        <i class="fa-solid fa-database"></i>
+        Backend
+      </h3>
+
+      <div class="stack-item">Node.js</div>
+      <div class="stack-item">Java / Spring</div>
+      <div class="stack-item">REST APIs</div>
+      <div class="stack-item">JWT / OAuth</div>
+      <div class="stack-item">Microsserviços</div>
+
+    </div>
+
+    <div class="card fade">
+
+      <h3>
+        <i class="fa-solid fa-lock"></i>
+        Security & DevOps
+      </h3>
+
+      <div class="stack-item">Docker</div>
+      <div class="stack-item">Git</div>
+      <div class="stack-item">CI/CD</div>
+      <div class="stack-item">OWASP</div>
+      <div class="stack-item">AppSec</div>
+      <div class="stack-item">PostgreSQL</div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<section id="projects">
+
+  <h2 class="section-title fade">
+    Featured Projects
+  </h2>
+
+  <div class="grid">
+
+    <div class="card fade">
+
+      <h3>
+        <i class="fa-solid fa-gamepad"></i>
+        GameHub Platform
+      </h3>
+
+      <p>
+        Plataforma gamer moderna com catálogo, autenticação JWT, dashboard analítico, arquitetura escalável e experiência orientada a produto.
+      </p>
+
+    </div>
+
+    <div class="card fade">
+
+      <h3>
+        <i class="fa-solid fa-chart-line"></i>
+        Analytics Dashboard
+      </h3>
+
+      <p>
+        Dashboard interativo focado em visualização de dados, performance, componentização frontend e integração com APIs.
+      </p>
+
+    </div>
+
+    <div class="card fade">
+
+      <h3>
+        <i class="fa-solid fa-shield"></i>
+        Secure Web Platform
+      </h3>
+
+      <p>
+        Aplicação web focada em autenticação segura, APIs REST, arquitetura escalável, observabilidade e práticas modernas de segurança.
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
+
+<footer>
+
+  <h2>
+    Let's build something great.
+  </h2>
+
+  <div class="socials">
+
+    <a href="https://github.com/mateusmesko" target="_blank">
+      <i class="fa-brands fa-github"></i>
+      GitHub
+    </a>
+
+    <a href="https://www.linkedin.com/in/mateus-mesko" target="_blank">
+      <i class="fa-brands fa-linkedin"></i>
+      LinkedIn
+    </a>
+
+    <a href="https://www.mesko.com.br/" target="_blank">
+      <i class="fa-solid fa-globe"></i>
+      Website
+    </a>
+
+    <a href="mailto:mateusmesko@gmail.com">
+      <i class="fa-solid fa-envelope"></i>
+      Email
+    </a>
+
+  </div>
+
+  <p style="margin-top:35px;">
+    © 2026 — Mateus Mesko
+  </p>
+
+</footer>
+
+<script>
+
+  const glow=document.querySelector('.glow');
+
+  document.addEventListener('mousemove',(e)=>{
+
+    glow.style.left=e.clientX+'px';
+    glow.style.top=e.clientY+'px';
 
   });
 
-</script>
-<script>
+  const observer=new IntersectionObserver((entries)=>{
 
-  const flipbookElement =
-          document.querySelector(".flipbook");
+    entries.forEach(entry=>{
 
-  let scale = 1;
+      if(entry.isIntersecting){
 
-  let mouseX = 0;
-  let mouseY = 0;
+        entry.target.classList.add('show');
 
-  document.addEventListener(
-          "mousemove",
-          (e) => {
+      }
 
-            mouseX = e.clientX;
-            mouseY = e.clientY;
+    });
 
-          }
-  );
+  },{threshold:.15});
 
-  document.addEventListener(
-          "wheel",
-          (e) => {
+  document.querySelectorAll('.fade').forEach(el=>{
 
-            e.preventDefault();
+    observer.observe(el);
 
-            const delta =
-                    e.deltaY * -0.001;
+  });
+  const toggle=document.getElementById('themeToggle');
 
-            scale += delta;
+  const icon=toggle.querySelector('i');
 
-            scale =
-                    Math.min(
-                            Math.max(1, scale),
-                            5
-                    );
+  toggle.addEventListener('click',()=>{
 
-            const rect =
-                    flipbookElement.getBoundingClientRect();
+    document.body.classList.toggle('light');
 
-            const x =
-                    ((mouseX - rect.left) / rect.width) * 100;
+    const light=document.body.classList.contains('light');
 
-            const y =
-                    ((mouseY - rect.top) / rect.height) * 100;
+    icon.className=light
+            ? 'fa-solid fa-sun'
+            : 'fa-solid fa-moon';
 
-            flipbookElement.style.transformOrigin =
-                    `${x}% ${y}%`;
+    localStorage.setItem(
+            'theme',
+            light?'light':'dark'
+    );
 
-            flipbookElement.style.transform =
-                    `scale(${scale})`;
+  });
 
-          },
-          { passive:false }
-  );
+  if(localStorage.getItem('theme')==='light'){
 
+    document.body.classList.add('light');
+
+    icon.className='fa-solid fa-sun';
+
+  }
 </script>
 
 </body>
